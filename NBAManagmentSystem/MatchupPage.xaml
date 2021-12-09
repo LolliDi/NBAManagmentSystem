@@ -12,18 +12,48 @@
 
         <StackPanel>
             <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Matchup List</TextBlock>
+            
             <StackPanel Orientation="Horizontal">
-                <DatePicker x:Name="DatePickerSort" Height="26"/>
-                <Image Margin="50,0,5,0" x:Name="ImageCommand1" Stretch="Fill" Height="100" Width="70"/>
-                <TextBlock Name="TBCommand1" Height="25" Width="150"></TextBlock>
-                <StackPanel>
-                    <TextBlock FontSize="40">VS</TextBlock>
-                    <TextBlock Name="TBTime" Width="100"></TextBlock>
-                </StackPanel>
-                <Image Margin="5,0" x:Name="ImageCommand2" Stretch="Fill" Height="100" Width="70"/>
-                <TextBlock Name="TBCommand2" Height="25" Width="150"></TextBlock>
+                <Button Style="{StaticResource BackBut}" Margin="10,0,0,0" Height="24" Click="ButtonBackDateClick">
+                    <TextBlock Height="19" Margin="0,-4,0,0"><Run Text="&lt;"/></TextBlock>
+                </Button>
+                <DatePicker x:Name="DatePickerSort" Height="26" Width="110" SelectedDateChanged="DatePickerSortSelectedDateChanged"/>
+                <Button Style="{StaticResource BackBut}"  Margin="0,0,3,0" Height="24" Click="ButtonNextDateClick" >
+                    <TextBlock Margin="0,-4,0,0"><Run Text="&gt;"/></TextBlock>
+                </Button>
+                <ListView Name="LVpr" Background="Transparent" Margin="0,0" Width="630" Height="90" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding GetLogoAway}" Height="80" Width="80"/>
+                                    <StackPanel VerticalAlignment="Center" Margin="5,0">
+                                        <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameAway}" VerticalAlignment="Center" Width="165" TextAlignment="Left"/>
+                                        <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="Away" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                    <StackPanel VerticalAlignment="Center" Margin="5,0">
+                                        <TextBlock FontSize="30">VS</TextBlock>
+                                        <TextBlock Name="TBMatchupDate" Text="{Binding Starttime,Mode = OneWay, StringFormat='HH:mm'}" VerticalAlignment="Center" Margin="5,0" FontSize="13"/>
+                                        <TextBlock Text="{Binding GetScore}" Margin="10,0,10,0" VerticalAlignment="Center" Width="55" FontSize="13"/>
+                                    </StackPanel >
+
+                                    <Image Source="{Binding GetLogoHome}" Height="80" Width="80" />
+                                    <StackPanel VerticalAlignment="Center" Margin="5,0">
+                                        <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameHome}" VerticalAlignment="Center" Margin="5,0" Width="165" TextAlignment="Left"/>
+                                        <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="Home" HorizontalAlignment="Left" Margin="5,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
-            <ListView Name="LVMatchupList" Background="Transparent" Margin="0,80" Width="700" Height="350">
+            <ListView Name="LVMatchupList" Background="Transparent" Margin="0,0" Width="770" Height="340" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"/>
@@ -31,12 +61,19 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Border>
+                        <Border BorderThickness="0,0,0,1" BorderBrush="Gray">
                             <StackPanel Orientation="Horizontal">
-                                <Button Background="{Binding OverOrNoColor}" Width="80" Height="25">
-                                    <TextBlock Style="{StaticResource ButText}" Text="{Binding OverOrNoText}"></TextBlock>
-                                </Button> 
-                                
+                                <TextBlock Background="{Binding OverOrNoColor}" Style="{StaticResource ButText}" Text="{Binding OverOrNoText}" FontSize="13" Width="60" Height="20"></TextBlock>
+                                <TextBlock Name="TBMatchupDate" Text="{Binding Starttime,Mode = OneWay, StringFormat='MM/dd HH:mm'}" VerticalAlignment="Center" Margin="5,0" FontSize="13"/>
+                                <Image Source="{Binding GetLogoAway}" Height="50" Width="50"/>
+                                <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameAway}" VerticalAlignment="Center" Width="138" FontSize="12" TextAlignment="Left"/>
+                                <TextBlock Text="{Binding GetScore}" Margin="10,0,10,0" VerticalAlignment="Center" Width="55" FontSize="13"/>
+                                <Image Source="{Binding GetLogoHome}" Height="50" Width="50"/>
+                                <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameHome}" VerticalAlignment="Center" Margin="5,0" Width="138" FontSize="12" TextAlignment="Left"/>
+                                <TextBlock Text="{Binding Location, TargetNullValue=Неизвестно}" VerticalAlignment="Center" Margin="5,0" FontSize="13" Width="100"/>
+                                <Button Uid="{Binding MatchupId}" Style="{StaticResource BackBut}" Height="25" Template="{StaticResource backButton}" Click="ViewClick">
+                                    <TextBlock Margin="5,0" Style="{StaticResource ButText}" Foreground="Black" FontWeight="DemiBold">View</TextBlock>
+                                </Button>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

@@ -19,10 +19,42 @@ namespace NBAManagmentSystem
     /// Логика взаимодействия для MatchupPage.xaml
     /// </summary>
     public partial class MatchupPage : Page
-    {
+    {   
         public MatchupPage()
         {
             InitializeComponent();
+            DatePickerSort.SelectedDate = new DateTime(2017, 1, 28);
+        }
+
+        private void DatePickerSortSelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //for (int i = 0; i < LVMatchupList.Items.Count;i++)
+            {
+                LVMatchupList.Items.Clear();
+            }
+            DateTime dt = DatePickerSort.SelectedDate.Value;
+            foreach (Matchup m in dbcl.dbP.Matchup.ToList())
+            {
+                if(m.Starttime.Day== dt.Day&& m.Starttime.Month == dt.Month&& m.Starttime.Year == dt.Year)
+                {
+                    LVMatchupList.Items.Add(m);
+                }
+            }
+        }
+
+        private void ButtonBackDateClick(object sender, RoutedEventArgs e)
+        {
+            DatePickerSort.SelectedDate = DatePickerSort.SelectedDate.Value.AddDays(-1);
+        }
+        private void ButtonNextDateClick(object sender, RoutedEventArgs e)
+        {
+            DatePickerSort.SelectedDate = DatePickerSort.SelectedDate.Value.AddDays(1);
+        }
+        private void ViewClick(object sender, RoutedEventArgs e)
+        {
+            Button b = sender as Button;
+            int id = Convert.ToInt32(b.Uid);
+            LVpr.ItemsSource = dbcl.dbP.Matchup.Where(x => x.MatchupId == id).ToList();
         }
     }
 }

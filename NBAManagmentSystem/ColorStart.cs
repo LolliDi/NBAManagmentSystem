@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace NBAManagmentSystem
 {
     public partial class Matchup
     {
-
         public SolidColorBrush OverOrNoColor
         {
             get
@@ -39,6 +40,70 @@ namespace NBAManagmentSystem
                     default:
                         return "Not Start";
                 }
+            }
+        }
+
+        public BitmapImage GetLogoAway
+        {
+            get
+            {
+                BitmapImage Photo = new BitmapImage();
+                byte[] buff = dbcl.dbP.Team.First(x => x.TeamId == Team_Away).Logo;
+                using (MemoryStream MS = new MemoryStream(buff))
+                {
+                    Photo.BeginInit();
+                    Photo.StreamSource = MS;
+                    Photo.CacheOption = BitmapCacheOption.OnLoad;
+                    Photo.EndInit();
+                }
+                return Photo;
+            }
+        }
+
+        public BitmapImage GetLogoHome
+        {
+            get
+            {
+                BitmapImage Photo = new BitmapImage();
+                byte[] buff = dbcl.dbP.Team.First(x => x.TeamId == Team_Home).Logo;
+                using (MemoryStream MS = new MemoryStream(buff))
+                {
+                    Photo.BeginInit();
+                    Photo.StreamSource = MS;
+                    Photo.CacheOption = BitmapCacheOption.OnLoad;
+                    Photo.EndInit();
+                }
+                return Photo;
+            }
+        }
+
+        public string GetNameAway
+        {
+            get
+            {
+                return dbcl.dbP.Team.First(x => x.TeamId == Team_Away).TeamName;
+            }
+        }
+        public string GetNameHome
+        {
+            get
+            {
+                return dbcl.dbP.Team.First(x => x.TeamId == Team_Home).TeamName;
+            }
+        }
+
+        public string GetScore
+        {
+            get
+            {
+                switch (Status)
+                {
+                    case -1:
+                        return "-";
+                    default:
+                        return "" + Team_Away_Score + "-" + Team_Home_Score;
+                }
+               
             }
         }
 
