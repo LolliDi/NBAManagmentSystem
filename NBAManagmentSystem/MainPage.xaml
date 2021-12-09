@@ -39,11 +39,27 @@
                     <TextBlock Style="{StaticResource ButText}"><Run Text="Admin"/></TextBlock>
                 </Button>
             </StackPanel>
+            <TextBlock Margin="-650,30,0,0">Click here</TextBlock>
+            <Path Stroke="Gray">
+                <Path.Fill>
+                    <SolidColorBrush Color="Gray"/>
+                </Path.Fill>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="65,0">
+                            <LineSegment Point="95,30"/>
+                            <LineSegment Point="97,20"/>
+                            <LineSegment Point="85,30"/>
+                            <LineSegment Point="95,30"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
             <StackPanel Orientation="Horizontal">
                 <Button Margin="9,0,3,0" Height="140" Width="30" Click="ButtonBackLVImageClick">
                     <TextBlock Style="{StaticResource ButText}" FontSize="30">&lt;</TextBlock>
                 </Button>
-                <ListView Name="LVImage" Background="Transparent" Margin="0,80" Width="700" Height="150">
+                <ListView Name="LVImage" Background="Transparent" Margin="0,2" Width="700" Height="150">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center"/>
