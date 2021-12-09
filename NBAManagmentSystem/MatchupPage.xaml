@@ -1,0 +1,47 @@
+﻿<Page x:Class="NBAManagmentSystem.MatchupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBAManagmentSystem"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MatchupPage">
+
+    <Grid>
+
+        <StackPanel>
+            <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Matchup List</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <DatePicker x:Name="DatePickerSort" Height="26"/>
+                <Image Margin="50,0,5,0" x:Name="ImageCommand1" Stretch="Fill" Height="100" Width="70"/>
+                <TextBlock Name="TBCommand1" Height="25" Width="150"></TextBlock>
+                <StackPanel>
+                    <TextBlock FontSize="40">VS</TextBlock>
+                    <TextBlock Name="TBTime" Width="100"></TextBlock>
+                </StackPanel>
+                <Image Margin="5,0" x:Name="ImageCommand2" Stretch="Fill" Height="100" Width="70"/>
+                <TextBlock Name="TBCommand2" Height="25" Width="150"></TextBlock>
+            </StackPanel>
+            <ListView Name="LVMatchupList" Background="Transparent" Margin="0,80" Width="700" Height="350">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Background="{Binding OverOrNoColor}" Width="80" Height="25">
+                                    <TextBlock Style="{StaticResource ButText}" Text="{Binding OverOrNoText}"></TextBlock>
+                                </Button> 
+                                
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -37,6 +37,36 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="Button" x:Key="BackBut">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="RenderTransformOrigin" Value="0.8,0.8"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.05" ScaleY="1.05"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Gray" BlurRadius="7"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsMouseCaptured" Value="True">
+                    <Setter Property="RenderTransformOrigin" Value="0.8,0.8"/>
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.02" ScaleY="1.02"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="Gray" BlurRadius="7"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="TextBlock" x:Key="ButText">
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="TextAlignment" Value="Center"/>
@@ -47,5 +77,10 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="15"/>
         </Style>
+        <ControlTemplate TargetType="Button" x:Key="backButton">
+            <Border CornerRadius="5" BorderThickness="2" Background="{TemplateBinding Background}" BorderBrush="Gray">
+                <ContentPresenter Content="{TemplateBinding Content}"/>
+            </Border>
+        </ControlTemplate>
     </Application.Resources>
 </Application>

@@ -16,20 +16,13 @@ using System.Windows.Shapes;
 namespace NBAManagmentSystem
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для MatchupPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MatchupPage : Page
     {
-        public MainWindow()
+        public MatchupPage()
         {
             InitializeComponent();
-            ClFrame.Fr = FramePage;
-            ClFrame.AddPage(0, new MainPage());
-        }
-
-        private void BackPageClick(object sender, RoutedEventArgs e)
-        {
-            ClFrame.BackPage();
         }
     }
 }

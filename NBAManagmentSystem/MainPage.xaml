@@ -32,7 +32,7 @@
                 <Run> redirect to different pages according to your role by clicking the buttons bellow</Run>
             </TextBlock>
             <StackPanel Margin="280,35,0,0" Orientation="Horizontal">
-                <Button Height="30" Width="100">
+                <Button Height="30" Width="100" Click="VisitorClick">
                     <TextBlock Style="{StaticResource ButText}"><Run Text="Visitor"/></TextBlock>
                 </Button>
                 <Button Height="30" Width="100" Margin="40,0,0,0">

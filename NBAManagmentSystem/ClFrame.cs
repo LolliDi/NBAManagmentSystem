@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace NBAManagmentSystem
@@ -23,6 +24,7 @@ namespace NBAManagmentSystem
             NumThis = ind;
             CountPage = History.Count;
             Fr.Navigate(History[NumThis]);
+            prover(History[NumThis]);
         }
 
         public static void BackPage()
@@ -31,6 +33,30 @@ namespace NBAManagmentSystem
             {
                 NumThis--;
                 Fr.Navigate(History[NumThis]);
+                prover(History[NumThis]);
+            }
+        }
+
+        static void prover(object o) //Проверяем какое это окно, если меню, то скрываем шапку, иначе показываем её
+        {
+            MainWindow m = null;
+            foreach (Window w in Application.Current.Windows) //ищем текущее окно
+            {
+                if (w.GetType() == typeof(MainWindow))
+                {
+                    m = w as MainWindow;
+                    break;
+                }
+            }
+            if (o.GetType() == typeof(MainPage))
+            {
+                m.GridCap.Height = new GridLength(0);
+                m.StackCap.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                m.GridCap.Height = new GridLength(69, GridUnitType.Star);
+                m.StackCap.Visibility = Visibility.Visible;
             }
         }
     }

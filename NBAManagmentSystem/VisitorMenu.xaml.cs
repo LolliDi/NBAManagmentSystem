@@ -16,20 +16,23 @@ using System.Windows.Shapes;
 namespace NBAManagmentSystem
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для VisitorMenu.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VisitorMenu : Page
     {
-        public MainWindow()
+        public VisitorMenu()
         {
             InitializeComponent();
-            ClFrame.Fr = FramePage;
-            ClFrame.AddPage(0, new MainPage());
         }
 
-        private void BackPageClick(object sender, RoutedEventArgs e)
+        private void PhotosClick(object sender, RoutedEventArgs e)
         {
-            ClFrame.BackPage();
+            ClFrame.AddPage(++ClFrame.NumThis, new PhotoPage());
+        }
+
+        private void MatchupsClick(object sender, RoutedEventArgs e)
+        {
+            ClFrame.AddPage(++ClFrame.NumThis, new MatchupPage());
         }
     }
 }

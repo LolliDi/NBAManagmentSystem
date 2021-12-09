@@ -83,5 +83,10 @@ namespace NBAManagmentSystem
                 LVImage.ItemsSource = _photo.Skip(_ThisImagesId).Take(3);
             }
         }
+
+        private void VisitorClick(object sender, RoutedEventArgs e)
+        {
+            ClFrame.AddPage(++ClFrame.NumThis,new VisitorMenu());
+        }
     }
 }
