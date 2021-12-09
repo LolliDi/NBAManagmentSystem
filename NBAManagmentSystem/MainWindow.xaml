@@ -1,0 +1,16 @@
+﻿<Window x:Class="NBAManagmentSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NBAManagmentSystem"
+        mc:Ignorable="d"
+        Title="NBA Managment System" Height="600" Width="800" ResizeMode="NoResize">
+
+    <Grid>
+        <StackPanel>
+            <Frame Name="FramePage" Height="550" NavigationUIVisibility="Hidden"></Frame>
+            <TextBlock Background="#1974D2" Foreground="White" Height="25" TextAlignment="Center" Margin="0,-10,0,0"><Run Text="The current season is 2016-2017, and NBA already has a history of 71 years."/></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
