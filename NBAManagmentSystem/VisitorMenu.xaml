@@ -26,10 +26,10 @@
         </Path>
         <StackPanel Margin="180,175,180,131">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,50">
-                <Button Height="40" Width="150" Margin="0,0,100,0">
+                <Button Height="40" Width="150" Margin="0,0,100,0" Click="TeamsClick">
                     <TextBlock Style="{StaticResource ButText}" Margin="0,0"><Run Text="Teams"/></TextBlock>
                 </Button>
-                <Button Height="40" Width="150">
+                <Button Height="40" Width="150" Click="PlayersClick">
                     <TextBlock Style="{StaticResource ButText}" Margin="5,0"><Run Text="Players"/></TextBlock>
                 </Button>
             </StackPanel>

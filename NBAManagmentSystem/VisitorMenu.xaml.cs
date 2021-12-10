@@ -34,5 +34,15 @@ namespace NBAManagmentSystem
         {
             ClFrame.AddPage(++ClFrame.NumThis, new MatchupPage());
         }
+
+        private void TeamsClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void PlayersClick(object sender, RoutedEventArgs e)
+        {
+            ClFrame.AddPage(++ClFrame.NumThis, new PlayersPage());
+        }
     }
 }

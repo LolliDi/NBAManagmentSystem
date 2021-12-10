@@ -50,15 +50,6 @@ namespace NBAManagmentSystem
                 }
             }
         }
-        /*FolderBrowserDialog FBD = new FolderBrowserDialog();
-            if (FBD.ShowDialog() == DialogResult.OK)
-            {
-                Save(_photo[Convert.ToInt32(i.Uid)].Photo, FBD.SelectedPath);
-    }*/
-    private void LVImageDownloadClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
 
         public void Save(BitmapImage image, string filePath, string uid)
         {
@@ -80,21 +71,11 @@ namespace NBAManagmentSystem
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void MenuItemDownloadClick(object sender, RoutedEventArgs e)
         {
             MenuItem i = sender as MenuItem;
             ContextMenu i1 = i.Parent as ContextMenu;
             Image i2 = i1.PlacementTarget as Image;
-            /*OpenFileDialog dial = new OpenFileDialog();
-            dial.ShowDialog();
-            string path = dial.InitialDirectory;
-            Save(_photo[Convert.ToInt32(i.Uid)].Photo,path);*/
-
             System.Windows.Forms.FolderBrowserDialog FBD = new System.Windows.Forms.FolderBrowserDialog();
             if (FBD.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

@@ -44,6 +44,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -70,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="BindingPlayers.cs" />
     <Compile Include="ColorStart.cs" />
     <Compile Include="Conference.cs">
       <DependentUpon>BD.tt</DependentUpon>
@@ -93,6 +95,7 @@
     <Compile Include="MatchupType.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="PageChange.cs" />
     <Compile Include="PhotoPage.xaml.cs">
       <DependentUpon>PhotoPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,9 @@
     </Compile>
     <Compile Include="PlayerInTeam.cs">
       <DependentUpon>BD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersPage.xaml.cs">
+      <DependentUpon>PlayersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Position.cs">
       <DependentUpon>BD.tt</DependentUpon>
@@ -163,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PhotoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlayersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

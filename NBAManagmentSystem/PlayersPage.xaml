@@ -1,0 +1,122 @@
+﻿<Page x:Class="NBAManagmentSystem.PlayersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NBAManagmentSystem"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PlayersPage">
+
+    <Grid>
+        <StackPanel>
+            <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Visitor Menu</TextBlock>
+            <StackPanel Background="#1974D2">
+                <ListView HorizontalContentAlignment="Left" Background="Transparent" Name="LVAlphabet" SelectedIndex="0" SelectionChanged="LVPlayers_SelectionChanged" Height="28" BorderThickness="0">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Style="{StaticResource ButText}" Loaded="AlphLoaded"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource ButText}" Margin="10,0">Season:</TextBlock>
+                    <ComboBox Name="ComBSeason" SelectionChanged="ComBSeasonSelectionChanged" Width="100">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="Black" Text="{Binding}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Style="{StaticResource ButText}" Margin="10,0">Team:</TextBlock>
+                    <ComboBox  Name="ComBTeam" SelectionChanged="ComBTeamSelectionChanged" Width="200" IsEditable="True">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="Black" Text="{Binding}" TextWrapping="Wrap"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <TextBlock Style="{StaticResource ButText}" Margin="50,0,10,0">Player name:</TextBlock>
+                    <TextBox Name="TBName" Width="100" TextChanged="TBNameTextChanged"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="" Width="90"/>
+                    <TextBlock Text="No." Width="24"/>
+                    <TextBlock Text="Name" Width="120"/>
+                    <TextBlock Text="Team" Width="95"/>
+                    <TextBlock Text="Position" Width="80"/>
+                    <TextBlock Text="Weight" Width="80"/>
+                    <TextBlock Text="Height" Width="85"/>
+                    <TextBlock Text="Experience" Width="90"/>
+                    <TextBlock Text="Country" Width="90"/>
+                </StackPanel>
+                <ListView Name="LVPlayers" Width="750" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="345" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel HorizontalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="1" BorderBrush="Gray" Margin="0,0,0,-5">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="Resources/person.png" Stretch="Fill" Width="60" Height="80" Margin="2" Uid="{Binding PlayerId}" Loaded="ImagePlayerLoaded"/>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="26">
+                                        <TextBlock Text="{Binding getOld}" Width="24" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="122">
+                                        <TextBlock Text="{Binding Name}" Width="120" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="92">
+                                        <TextBlock Text="{Binding getTeam}" Width="90" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="82">
+                                        <TextBlock Text="{Binding Position.Abbr}" Width="80" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="82">
+                                        <TextBlock Text="{Binding Weight}" Width="80" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="82">
+                                        <TextBlock Text="{Binding Height}" Width="80" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="92">
+                                        <TextBlock Text="{Binding getExp}" Width="90" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Border BorderThickness="1,0,0,0" BorderBrush="Gray" Height="84" Width="92">
+                                        <TextBlock Text="{Binding Country.CountryName}" Width="90" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal" Margin="30,5">
+                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToStartClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,0,0,2">&lt;&lt;</TextBlock>
+                    </Button>
+                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageBackClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,0,4,2">&lt;</TextBlock>
+                    </Button>
+                    <TextBox Name="TBGoToPage" Height="20" Margin="10,0,0,0" Width="40" TextChanged="TBGoToPageTextChanged"></TextBox>
+                    <TextBlock>of</TextBlock>
+                    <TextBlock Foreground="Black" Name="TBCountPage" Uid="1" Width="30" Margin="3,0,10,0"></TextBlock>
+                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageNextClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,0,4,2">&gt;</TextBlock>
+                    </Button>
+                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageEndClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,0,0,2">&gt;&gt;</TextBlock>
+                    </Button>
+                    <TextBlock Margin="50,3" Foreground="Black" FontWeight="DemiBold">Total XX records, YY records in one page</TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
