@@ -40,6 +40,14 @@ namespace NBAManagmentSystem
                     LVMatchupList.Items.Add(m);
                 }
             }
+            if(LVMatchupList.Items.Count>0)
+            {
+                TBNoMatchups.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TBNoMatchups.Visibility = Visibility.Visible;
+            }
         }
 
         private void ButtonBackDateClick(object sender, RoutedEventArgs e)

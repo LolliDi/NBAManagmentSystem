@@ -18,11 +18,11 @@ namespace NBAManagmentSystem
                 switch(Status)
                 {                  
                     case 0:
-                        return new SolidColorBrush(Color.FromArgb(100, 255, 0, 0));
+                        return new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                     case 1:
-                        return new SolidColorBrush(Color.FromArgb(100, 144, 144, 144));
+                        return new SolidColorBrush(Color.FromArgb(255, 144, 144, 144));
                     default:
-                        return new SolidColorBrush(Color.FromArgb(100, 30, 144, 255));
+                        return new SolidColorBrush(Color.FromArgb(255, 30, 144, 255));
                 }
             }
         }
