@@ -10,7 +10,7 @@ namespace NBAManagmentSystem
 
         public byte[] photo
         {
-            set 
+            set
             {
                 using (MemoryStream MS = new MemoryStream(value))
                 {
