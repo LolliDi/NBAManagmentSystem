@@ -10,9 +10,8 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Visitor Menu</TextBlock>
-            <StackPanel Background="#1974D2">
-                <ListView HorizontalContentAlignment="Left" Background="Transparent" Name="LVAlphabet" SelectedIndex="0" SelectionChanged="LVPlayers_SelectionChanged" Height="28" BorderThickness="0">
+            <StackPanel Background="#1974D2" Height="70">
+                <ListView HorizontalContentAlignment="Left" Background="Transparent" Name="LVAlphabet" SelectedIndex="0" SelectionChanged="LVPlayers_SelectionChanged" Height="28" BorderThickness="0" Margin="0,3">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center"/>
@@ -99,21 +98,21 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <TextBlock Name="TBNoResult" FontSize="40" Margin="0,-210,0,0" Visibility="Collapsed">No results</TextBlock>
-                <StackPanel Orientation="Horizontal" Margin="30,5">
-                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToStartClick">
-                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,0,0,2">&lt;&lt;</TextBlock>
+                <StackPanel Orientation="Horizontal" Margin="0,3" Background="#DCDCDC" Width="800" Height="30">
+                    <Button Margin="30,4,0,4" Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToStartClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,-2,0,0">&lt;&lt;</TextBlock>
                     </Button>
-                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageBackClick">
-                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,0,4,2">&lt;</TextBlock>
+                    <Button Margin="3,4,0,4" Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageBackClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,-2,4,0">&lt;</TextBlock>
                     </Button>
                     <TextBox Name="TBGoToPage" Height="20" Margin="10,0,0,0" Width="40" TextChanged="TBGoToPageTextChanged"></TextBox>
-                    <TextBlock>of</TextBlock>
-                    <TextBlock Foreground="Black" Name="TBCountPage" Uid="1" Width="30" Margin="3,0,10,0"></TextBlock>
-                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageNextClick">
-                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,0,4,2">&gt;</TextBlock>
+                    <TextBlock Margin="0,4" >of</TextBlock>
+                    <TextBlock Margin="0,4" Foreground="Black" Name="TBCountPage" Uid="1" Width="35"></TextBlock>
+                    <Button  Margin="0,4"  Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageNextClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="4,-2,4,0">&gt;</TextBlock>
                     </Button>
-                    <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageEndClick">
-                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,0,0,2">&gt;&gt;</TextBlock>
+                    <Button Margin="3,4" Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToPageEndClick">
+                        <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,-2,0,2">&gt;&gt;</TextBlock>
                     </Button>
                     <TextBlock Margin="50,3" Foreground="Black" FontWeight="DemiBold">Total XX records, YY records in one page</TextBlock>
                 </StackPanel>

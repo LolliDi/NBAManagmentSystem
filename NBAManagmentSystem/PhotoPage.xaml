@@ -10,9 +10,8 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Visitor Menu</TextBlock>
-            <TextBlock Height="25" Margin="0,42,0,10" >When you like a photo, you can right-click a photo and choose the download menu item in the context to download</TextBlock>
-            <ListView x:Name="LVImage" Background="Transparent" Width="780" Height="350" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <TextBlock Height="25" Margin="0,25,0,10" >When you like a photo, you can right-click a photo and choose the download menu item in the context to download</TextBlock>
+            <ListView x:Name="LVImage" Background="Transparent" Width="780" Height="400" Margin="10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel HorizontalAlignment="Center"/>

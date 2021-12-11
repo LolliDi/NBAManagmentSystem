@@ -11,7 +11,7 @@
     <Grid>
 
         <StackPanel>
-            <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Matchup List</TextBlock>
+            
             <StackPanel Orientation="Horizontal">
                 <Button Style="{StaticResource BackBut}" Margin="10,0,0,0" Height="24" Click="ButtonBackDateClick">
                     <TextBlock Height="19" Margin="0,-4,0,0"><Run Text="&lt;"/></TextBlock>
@@ -26,7 +26,7 @@
                 <Button Style="{StaticResource BackBut}"  Margin="0,0,3,0" Height="24" Click="ButtonNextDateClick" >
                     <TextBlock Margin="0,-4,0,0"><Run Text="&gt;"/></TextBlock>
                 </Button>
-                <ListView Name="LVpr" Background="Transparent" Margin="0,0" Width="630" Height="90" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
+                <ListView Name="LVpr" Background="Transparent" Margin="0,0" Width="630" Height="100" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel HorizontalAlignment="Center"/>
@@ -36,7 +36,7 @@
                         <DataTemplate>
                             <Border>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding GetLogoAway}" Height="80" Width="80"/>
+                                    <Image Source="{Binding GetLogoAway}" Height="90" Width="90"/>
                                     <StackPanel VerticalAlignment="Center" Margin="5,0">
                                         <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameAway}" VerticalAlignment="Center" Width="165" TextAlignment="Left"/>
                                         <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="Away" HorizontalAlignment="Left"/>

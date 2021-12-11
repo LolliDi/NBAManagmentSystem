@@ -9,7 +9,6 @@
       Title="VisitorMenu">
 
     <Grid>
-        <TextBlock FontWeight="DemiBold" FontSize="20" VerticalAlignment="Top" Margin="101,0,99,0" Panel.ZIndex="10">Visitor Menu</TextBlock>
         <Path Stroke="Gray" SnapsToDevicePixels="True" Margin="0,80,0,0">
             <Path.Fill>
                 <SolidColorBrush Color="Transparent"/>

@@ -16,21 +16,13 @@ using System.Windows.Shapes;
 namespace NBAManagmentSystem
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для TeamsPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TeamsPage : Page
     {
-        public MainWindow()
+        public TeamsPage()
         {
             InitializeComponent();
-            ClFrame.Fr = FramePage;
-            ClFrame.AddPage(0, new MainPage());
-
-        }
-
-        private void BackPageClick(object sender, RoutedEventArgs e)
-        {
-            ClFrame.BackPage();
         }
     }
 }

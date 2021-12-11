@@ -127,6 +127,9 @@
     <Compile Include="Team.cs">
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
+    <Compile Include="TeamsPage.xaml.cs">
+      <DependentUpon>TeamsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisitorMenu.xaml.cs">
       <DependentUpon>VisitorMenu.xaml</DependentUpon>
     </Compile>
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PlayersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeamsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

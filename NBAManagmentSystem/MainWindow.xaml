@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NBAManagmentSystem"
         mc:Ignorable="d"
-        Title="NBA Managment System" Height="600" Width="800" ResizeMode="NoResize">
+        Title="NBA Managment System" Height="610" Width="800" ResizeMode="NoResize">
 
     <Grid>
         <Grid Name="StandartGrid">
@@ -18,13 +18,13 @@
             <StackPanel x:Name="StackCap" Grid.Row="0" Orientation="Horizontal" Height=" 70" VerticalAlignment="Top" Grid.RowSpan="2" Panel.ZIndex="5">
                 <Image Source="Resources/logo.jpg" Stretch="Fill" Width="30" Height="60" Margin="5,0"/>
                 <TextBlock Height="20" VerticalAlignment="Bottom" Margin="10"><Run Text="NBA Managment System" /></TextBlock>
-                
-                <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Height="25" Margin="480,0,0,10" VerticalAlignment="Bottom" Click="BackPageClick">
+                <TextBlock Name="TBNamePage" FontWeight="DemiBold" FontSize="20" VerticalAlignment="Bottom" Margin="90,0,0,10" Panel.ZIndex="10" Width="150"></TextBlock>
+                <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Height="25" Margin="240,0,0,10" VerticalAlignment="Bottom" Click="BackPageClick">
                     <TextBlock Style="{StaticResource ButText}" Foreground="Black" FontWeight="DemiBold" Margin="13,0">Back</TextBlock>
                 </Button>
             </StackPanel>
             <Frame Grid.Row="1" Name="FramePage" Height="550" NavigationUIVisibility="Hidden"></Frame>
-            <TextBlock Grid.Row="2" Background="#1974D2" Foreground="White" TextAlignment="Center" Margin="0,0,0,-2"><Run Text="The current season is 2016-2017, and NBA already has a history of 71 years."/></TextBlock>
+            <TextBlock Grid.Row="2" Background="#1974D2" Foreground="White" TextAlignment="Center" Margin="0,-1,0,0"><Run Text="The current season is 2016-2017, and NBA already has a history of 71 years."/></TextBlock>
         </Grid>
     </Grid>
 </Window>

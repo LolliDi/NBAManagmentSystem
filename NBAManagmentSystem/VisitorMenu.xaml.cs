@@ -37,7 +37,7 @@ namespace NBAManagmentSystem
 
         private void TeamsClick(object sender, RoutedEventArgs e)
         {
-            
+            ClFrame.AddPage(++ClFrame.NumThis, new TeamsPage());
         }
 
         private void PlayersClick(object sender, RoutedEventArgs e)
