@@ -98,6 +98,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <TextBlock Name="TBNoResult" FontSize="40" Margin="0,-210,0,0" Visibility="Collapsed">No results</TextBlock>
                 <StackPanel Orientation="Horizontal" Margin="30,5">
                     <Button Style="{StaticResource BackBut}" Template="{StaticResource backButton}" Click="GoToStartClick">
                         <TextBlock Foreground="Black" FontWeight="DemiBold" Margin="0,0,0,2">&lt;&lt;</TextBlock>

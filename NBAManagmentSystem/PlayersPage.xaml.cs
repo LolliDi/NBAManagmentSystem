@@ -129,70 +129,42 @@ namespace NBAManagmentSystem
         private void Filtr()
         {
             _filt.Clear();
-            if(LVAlphabet.SelectedItem == "All")
+            _filt = dbcl.dbP.Player.ToList();
+            if(LVAlphabet.SelectedItem != "All")
             {
-                _filt = dbcl.dbP.Player.ToList();
-            }
-            else
-            {
+                string alp = LVAlphabet.SelectedItem as string;
                 Regex r = new Regex(@"^"+ LVAlphabet.SelectedItem + "\\w*");
-                foreach(Player p in dbcl.dbP.Player.ToList())
-                {
-                    if(r.IsMatch(p.Name))
-                    {
-                        _filt.Add(p);
-                    }
-                }
+                _filt = _filt.AsEnumerable().Where(x=>r.IsMatch(x.Name)).ToList();
             }
             if(TBName.Text!="")
             {
-                List<Player> filtTemp = new List<Player>();
-                foreach(Player p in _filt)
-                {
-                    if(p.Name.ToLower().Contains(TBName.Text.ToLower()))
-                    {
-                        filtTemp.Add(p);
-                    }
-                }
-                _filt = filtTemp;
+                string name = TBName.Text.ToLower();
+                _filt = _filt.AsEnumerable().Where(x => x.Name.ToLower().Contains(name)).ToList();
             }
 
             if(ComBSeason.SelectedItem!="All"&& ComBSeason.SelectedItem != null)
             {
-                List<Player> filtTemp = new List<Player>();
-                foreach(Player f in _filt)
-                {
-                    foreach(PlayerInTeam p in dbcl.dbP.PlayerInTeam.Where(x => x.Season.Name == ComBSeason.SelectedItem).ToList())
-                    {
-                        if(p.PlayerId==f.PlayerId && !filtTemp.Contains(f))
-                        {
-                            filtTemp.Add(f);
-                        }
-                    }
-                }
-                _filt = filtTemp;
+                string selInd = ComBSeason.SelectedItem as string;
+                List<PlayerInTeam> pIT = dbcl.dbP.PlayerInTeam.ToList();
+                _filt = _filt.Where(a => pIT.FirstOrDefault(b => b.PlayerId == a.PlayerId&&b.Season.Name==selInd) != null).ToList();
             }
 
             if(ComBTeam.SelectedItem!="All"&&ComBTeam.SelectedItem!=null)
             {
-                List<Player> filtTemp = new List<Player>();
-                int idTeam = dbcl.dbP.Team.FirstOrDefault(x => x.TeamName == ComBTeam.SelectedItem).TeamId;
-                foreach(Player f in _filt)
-                {
-                    foreach (PlayerInTeam p in dbcl.dbP.PlayerInTeam.Where(x => x.TeamId==idTeam).ToList())
-                    {
-                        if (p.PlayerId == f.PlayerId && !filtTemp.Contains(f))
-                        {
-                            filtTemp.Add(f);
-                        }
-                    }
-                }
-                _filt = filtTemp;
+
+                string nameT = ComBTeam.SelectedItem as string;
+                List<PlayerInTeam> pIT = dbcl.dbP.PlayerInTeam.ToList();
+                _filt = _filt.Where(x => pIT.FirstOrDefault(y => y.PlayerId == x.PlayerId && y.Team.TeamName == nameT) != null).ToList();
             }
 
             if (_filt.Count == 0)
             {
                 LVPlayers.ItemsSource = null;
+                TBNoResult.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                TBNoResult.Visibility = Visibility.Collapsed;
             }
             LVPlayers.Items.Refresh();
             pc.CountItemsInListGetSet = _filt.Count();
