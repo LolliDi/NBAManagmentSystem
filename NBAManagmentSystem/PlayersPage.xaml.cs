@@ -99,14 +99,17 @@ namespace NBAManagmentSystem
             }
         }
 
-        private void GoToPage(int numPage)
+        private bool GoToPage(int numPage)
         {
             if (numPage > 0 && numPage <= pc.CountPagesGetSet)
             {
                 LVPlayers.ItemsSource = _filt.Skip((numPage - 1) * 4).Take(4);
                 pc.thisPageNum = numPage;
                 TBGoToPage.Text = "" + numPage;
+                return true;
             }
+            else
+                return false;
         }
 
         string oldTB = "1";
@@ -116,10 +119,14 @@ namespace NBAManagmentSystem
             {
                 if (TBGoToPage.Text == "0")
                 {
-                    TBGoToPage.Text = "1";
-                    TBGoToPage.CaretIndex = 1;
+                    oldTB = "1";
+                    throw new Exception("хиихихи фиг тебе");
                 }
-                GoToPage(Convert.ToInt32(TBGoToPage.Text));
+                if(!GoToPage(Convert.ToInt32(TBGoToPage.Text)))
+                {
+                    oldTB = "" + pc.CountPagesGetSet;
+                    throw new Exception("хиихихи фиг тебе");
+                }
                 oldTB = TBGoToPage.Text;
             }
             catch
