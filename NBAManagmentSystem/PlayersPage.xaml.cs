@@ -2,24 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NBAManagmentSystem
 {
     /// <summary>
     /// Логика взаимодействия для PlayersPage.xaml
     /// </summary>
+    /// 
+
     public partial class PlayersPage : Page
     {
         int _AlphId = 0;
@@ -29,32 +23,53 @@ namespace NBAManagmentSystem
         public PlayersPage()
         {
             InitializeComponent();
-           
+            initialPlayers();
+            ComBTeam.SelectedIndex = 0;
+            ComBSeason.SelectedIndex = 0;
+
+        }
+
+        public PlayersPage(string nameTeam, bool firstRoster)
+        {
+            InitializeComponent();
+            initialPlayers();
+            ComBTeam.SelectedItem = nameTeam;
+            if (firstRoster)
+            {
+                ComBSeason.SelectedItem = "2013-2014";
+            }
+            else
+            {
+                ComBSeason.SelectedIndex = 0;
+            }
+
+        }
+
+        private void initialPlayers()
+        {
             _a.Add("All");
             int i = 1;
-            for(char c='A';c<='Z';c++)
+            for (char c = 'A'; c <= 'Z'; c++)
             {
-                _a.Add("" +c);
+                _a.Add("" + c);
                 i++;
             }
             LVAlphabet.ItemsSource = _a.ToList();
             ComBSeason.Items.Add("All");
-            foreach(Season s in dbcl.dbP.Season.ToList())
+            foreach (Season s in dbcl.dbP.Season.ToList())
             {
                 ComBSeason.Items.Add(s.Name);
             }
 
-            ComBTeam.Items.Add("All"); 
+            ComBTeam.Items.Add("All");
             foreach (Team t in dbcl.dbP.Team.ToList())
             {
                 ComBTeam.Items.Add(t.TeamName);
             }
-            ComBTeam.SelectedIndex = 0;
-            ComBSeason.SelectedIndex = 0;
+
             _filt = dbcl.dbP.Player.ToList();
             pc.CountItemsInListGetSet = _filt.Count();
             GoToPage(1);
-
         }
         private void AlphLoaded(object sender, RoutedEventArgs e)
         {
@@ -69,7 +84,7 @@ namespace NBAManagmentSystem
             Image image = sender as Image;
             int id = Convert.ToInt32(image.Uid);
             byte[] Img = dbcl.dbP.Player.FirstOrDefault(x => x.PlayerId == id).Img;
-           if (Img != null)
+            if (Img != null)
             {
                 BitmapImage Photo = new BitmapImage();
                 byte[] buff = Img;
@@ -86,23 +101,34 @@ namespace NBAManagmentSystem
 
         private void GoToPage(int numPage)
         {
-            if(numPage>0&&numPage<=pc.CountPagesGetSet)
+            if (numPage > 0 && numPage <= pc.CountPagesGetSet)
             {
-                LVPlayers.ItemsSource = _filt.Skip((numPage-1)*4).Take(4);
+                LVPlayers.ItemsSource = _filt.Skip((numPage - 1) * 4).Take(4);
                 pc.thisPageNum = numPage;
                 TBGoToPage.Text = "" + numPage;
             }
         }
 
+        string oldTB = "1";
         private void TBGoToPageTextChanged(object sender, TextChangedEventArgs e)
         {
             try
             {
+                if (TBGoToPage.Text == "0")
+                {
+                    TBGoToPage.Text = "1";
+                    TBGoToPage.CaretIndex = 1;
+                }
                 GoToPage(Convert.ToInt32(TBGoToPage.Text));
+                oldTB = TBGoToPage.Text;
             }
             catch
             {
-
+                if (TBGoToPage.Text != "")
+                {
+                    TBGoToPage.Text = oldTB;
+                    TBGoToPage.CaretIndex = oldTB.Length;
+                }
             }
         }
 
@@ -113,7 +139,7 @@ namespace NBAManagmentSystem
 
         private void GoToPageBackClick(object sender, RoutedEventArgs e)
         {
-            GoToPage(pc.thisPageNum-1);
+            GoToPage(pc.thisPageNum - 1);
         }
 
         private void GoToPageNextClick(object sender, RoutedEventArgs e)
@@ -130,26 +156,26 @@ namespace NBAManagmentSystem
         {
             _filt.Clear();
             _filt = dbcl.dbP.Player.ToList();
-            if(LVAlphabet.SelectedItem != "All")
+            if (LVAlphabet.SelectedItem != "All")
             {
                 string alp = LVAlphabet.SelectedItem as string;
-                Regex r = new Regex(@"^"+ LVAlphabet.SelectedItem + "\\w*");
-                _filt = _filt.AsEnumerable().Where(x=>r.IsMatch(x.Name)).ToList();
+                Regex r = new Regex(@"^" + LVAlphabet.SelectedItem + "\\w*");
+                _filt = _filt.AsEnumerable().Where(x => r.IsMatch(x.Name)).ToList();
             }
-            if(TBName.Text!="")
+            if (TBName.Text != "")
             {
                 string name = TBName.Text.ToLower();
                 _filt = _filt.AsEnumerable().Where(x => x.Name.ToLower().Contains(name)).ToList();
             }
 
-            if(ComBSeason.SelectedItem!="All"&& ComBSeason.SelectedItem != null)
+            if (ComBSeason.SelectedItem != "All" && ComBSeason.SelectedItem != null)
             {
                 string selInd = ComBSeason.SelectedItem as string;
                 List<PlayerInTeam> pIT = dbcl.dbP.PlayerInTeam.ToList();
-                _filt = _filt.Where(a => pIT.FirstOrDefault(b => b.PlayerId == a.PlayerId&&b.Season.Name==selInd) != null).ToList();
+                _filt = _filt.Where(a => pIT.FirstOrDefault(b => b.PlayerId == a.PlayerId && b.Season.Name == selInd) != null).ToList();
             }
 
-            if(ComBTeam.SelectedItem!="All"&&ComBTeam.SelectedItem!=null)
+            if (ComBTeam.SelectedItem != "All" && ComBTeam.SelectedItem != null)
             {
 
                 string nameT = ComBTeam.SelectedItem as string;
@@ -169,7 +195,7 @@ namespace NBAManagmentSystem
             LVPlayers.Items.Refresh();
             pc.CountItemsInListGetSet = _filt.Count();
             GoToPage(1);
-            TBCountPage.Text =""+ pc.CountPagesGetSet;
+            TBCountPage.Text = "" + pc.CountPagesGetSet;
         }
 
         private void LVPlayers_SelectionChanged(object sender, SelectionChangedEventArgs e)

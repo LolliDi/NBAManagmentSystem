@@ -14,7 +14,7 @@ namespace NBAManagmentSystem
             set
             {
                 countPages = value / _countItemsOnPage + ((value % _countItemsOnPage == 0) ? 0 : 1);
-                
+
                 thisPageNum = 1;
             }
         }

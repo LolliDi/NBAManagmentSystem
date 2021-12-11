@@ -3,28 +3,24 @@ using System.Windows.Media.Imaging;
 
 namespace NBAManagmentSystem
 {
-    class Photos
+    public partial class Team
     {
-        int Id;
-        public BitmapImage Photo = new BitmapImage();
 
-        public byte[] photo
+        public BitmapImage GetLogo
         {
-            set
+            get
             {
-                using (MemoryStream MS = new MemoryStream(value))
+                BitmapImage Photo = new BitmapImage();
+                byte[] buff = Logo;
+                using (MemoryStream MS = new MemoryStream(buff))
                 {
                     Photo.BeginInit();
                     Photo.StreamSource = MS;
                     Photo.CacheOption = BitmapCacheOption.OnLoad;
                     Photo.EndInit();
                 }
+                return Photo;
             }
-        }
-        public Photos(int id, byte[] b)
-        {
-            Id = id;
-            photo = b;
         }
     }
 }

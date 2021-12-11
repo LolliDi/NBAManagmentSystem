@@ -68,7 +68,7 @@
                         <Border BorderThickness="0,0,0,1" BorderBrush="Gray">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Background="{Binding OverOrNoColor}" Style="{StaticResource ButText}" Text="{Binding OverOrNoText}" FontSize="13" Width="60" Height="20"></TextBlock>
-                                <TextBlock Name="TBMatchupDate" Text="{Binding Starttime,Mode = OneWay, StringFormat='MM/dd HH:mm'}" VerticalAlignment="Center" Margin="5,0" FontSize="13"/>
+                                <TextBlock Name="TBMatchupDate" Text="{Binding Starttime,Mode = OneWay, StringFormat='MM/dd HH:mm yyyy'}" TextWrapping="Wrap" Width="70" VerticalAlignment="Center" Margin="5,0" FontSize="13"/>
                                 <Image Source="{Binding GetLogoAway}" Height="50" Width="50"/>
                                 <TextBlock Foreground="#1974D2" FontWeight="DemiBold" Text="{Binding GetNameAway}" VerticalAlignment="Center" Width="138" FontSize="12" TextAlignment="Left"/>
                                 <TextBlock Text="{Binding GetScore}" Margin="10,0,10,0" VerticalAlignment="Center" Width="55" FontSize="13"/>

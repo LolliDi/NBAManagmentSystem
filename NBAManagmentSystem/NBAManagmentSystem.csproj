@@ -72,6 +72,7 @@
       <DependentUpon>BD.tt</DependentUpon>
     </Compile>
     <Compile Include="BindingPlayers.cs" />
+    <Compile Include="BindingTeam.cs" />
     <Compile Include="ColorStart.cs" />
     <Compile Include="Conference.cs">
       <DependentUpon>BD.tt</DependentUpon>

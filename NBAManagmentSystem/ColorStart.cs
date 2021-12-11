@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -15,8 +11,8 @@ namespace NBAManagmentSystem
         {
             get
             {
-                switch(Status)
-                {                  
+                switch (Status)
+                {
                     case 0:
                         return new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
                     case 1:
@@ -103,7 +99,7 @@ namespace NBAManagmentSystem
                     default:
                         return "" + Team_Away_Score + "-" + Team_Home_Score;
                 }
-               
+
             }
         }
 

@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NBAManagmentSystem
 {
@@ -19,28 +10,46 @@ namespace NBAManagmentSystem
     /// Логика взаимодействия для MatchupPage.xaml
     /// </summary>
     public partial class MatchupPage : Page
-    {   
+    {
+        List<Matchup> _filt = new List<Matchup>();
         public MatchupPage()
         {
             InitializeComponent();
+            _filt = dbcl.dbP.Matchup.ToList();
             DatePickerSort.SelectedDate = new DateTime(2017, 1, 28);
+        }
+
+        public MatchupPage(int idTeam)
+        {
+            InitializeComponent();
+            _filt = dbcl.dbP.Matchup.Where(x => x.Team_Home == idTeam || x.Team_Away == idTeam).ToList();
+            DatePickerSort.SelectedDate = new DateTime(2017, 1, 28);
+            foreach (Matchup m in _filt)
+            {
+                LVMatchupList.Items.Add(m);
+            }
+            if (LVMatchupList.Items.Count > 0)
+            {
+                TBNoMatchups.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                TBNoMatchups.Visibility = Visibility.Visible;
+            }
         }
 
         private void DatePickerSortSelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            //for (int i = 0; i < LVMatchupList.Items.Count;i++)
-            {
-                LVMatchupList.Items.Clear();
-            }
+            LVMatchupList.Items.Clear();
             DateTime dt = DatePickerSort.SelectedDate.Value;
-            foreach (Matchup m in dbcl.dbP.Matchup.ToList())
+            foreach (Matchup m in _filt)
             {
-                if(m.Starttime.Day== dt.Day&& m.Starttime.Month == dt.Month&& m.Starttime.Year == dt.Year)
+                if (m.Starttime.Day == dt.Day && m.Starttime.Month == dt.Month && m.Starttime.Year == dt.Year)
                 {
                     LVMatchupList.Items.Add(m);
                 }
             }
-            if(LVMatchupList.Items.Count>0)
+            if (LVMatchupList.Items.Count > 0)
             {
                 TBNoMatchups.Visibility = Visibility.Collapsed;
             }
@@ -56,6 +65,7 @@ namespace NBAManagmentSystem
         }
         private void ButtonNextDateClick(object sender, RoutedEventArgs e)
         {
+
             DatePickerSort.SelectedDate = DatePickerSort.SelectedDate.Value.AddDays(1);
         }
         private void ViewClick(object sender, RoutedEventArgs e)

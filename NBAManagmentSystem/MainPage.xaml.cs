@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace NBAManagmentSystem
 {
     /// <summary>
     /// Логика взаимодействия для MainPage.xaml
     /// </summary>
-    
-    
+
+
 
     public partial class MainPage : Page
     {
@@ -29,8 +21,8 @@ namespace NBAManagmentSystem
         public MainPage()
         {
             InitializeComponent();
-            
-            foreach(Pictures p in dbcl.dbP.Pictures.ToList())
+
+            foreach (Pictures p in dbcl.dbP.Pictures.ToList())
             {
                 _photo.Add(new Photos(p.Id, p.Img));
             }
@@ -41,9 +33,9 @@ namespace NBAManagmentSystem
         {
             Image img = sender as Image;
             img.Source = _photo[_ImageTaken + _ThisImagesId].Photo;
-            img.Uid = "" + (_ImageTaken+_ThisImagesId);
+            img.Uid = "" + (_ImageTaken + _ThisImagesId);
             _ImageTaken++;
-            if(_ImageTaken==3)
+            if (_ImageTaken == 3)
             {
                 _ImageTaken = 0;
             }
@@ -53,11 +45,11 @@ namespace NBAManagmentSystem
         {
             Image i = sender as Image;
             ImagePreview p = new ImagePreview(_photo[Convert.ToInt32(i.Uid)].Photo);
-            foreach(Window w in Application.Current.Windows)
+            foreach (Window w in Application.Current.Windows)
             {
-                if(w.GetType()==typeof(MainWindow))
+                if (w.GetType() == typeof(MainWindow))
                 {
-                    p.Top = w.Top+50; //центрируем открытие изображения по текущему окну
+                    p.Top = w.Top + 50; //центрируем открытие изображения по текущему окну
                     p.Left = w.Left;
                     p.ShowDialog();
                     return;
@@ -67,7 +59,7 @@ namespace NBAManagmentSystem
 
         private void ButtonNextLVImageClick(object sender, RoutedEventArgs e)
         {
-            if (2+_ThisImagesId+1 < _photo.Count)
+            if (2 + _ThisImagesId + 1 < _photo.Count)
             {
                 _ThisImagesId++;
                 LVImage.ItemsSource = _photo.Skip(_ThisImagesId).Take(3);
@@ -77,7 +69,7 @@ namespace NBAManagmentSystem
 
         private void ButtonBackLVImageClick(object sender, RoutedEventArgs e)
         {
-            if (_ThisImagesId-1 >0)
+            if (_ThisImagesId - 1 > 0)
             {
                 _ThisImagesId--;
                 LVImage.ItemsSource = _photo.Skip(_ThisImagesId).Take(3);
@@ -86,7 +78,7 @@ namespace NBAManagmentSystem
 
         private void VisitorClick(object sender, RoutedEventArgs e)
         {
-            ClFrame.AddPage(++ClFrame.NumThis,new VisitorMenu());
+            ClFrame.AddPage(++ClFrame.NumThis, new VisitorMenu());
         }
     }
 }

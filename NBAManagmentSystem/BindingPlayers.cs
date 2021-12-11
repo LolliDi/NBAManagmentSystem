@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
-using System.Drawing;
 
 namespace NBAManagmentSystem
 {
@@ -28,8 +22,8 @@ namespace NBAManagmentSystem
             get
             {
                 string[] name = dbcl.dbP.Team.FirstOrDefault(y => y.TeamId == dbcl.dbP.PlayerInTeam.FirstOrDefault(x => x.PlayerId == PlayerId).TeamId).TeamName.Split(' ');
-                string retName="";
-                foreach(string s in name)
+                string retName = "";
+                foreach (string s in name)
                 {
                     retName += s[0];
                 }

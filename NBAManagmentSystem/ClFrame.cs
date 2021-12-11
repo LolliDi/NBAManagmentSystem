@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
 
 namespace NBAManagmentSystem
 {
@@ -9,9 +9,9 @@ namespace NBAManagmentSystem
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public static Frame Fr;
-        public static List<object> History=new List<object>();
-        public static int NumThis=0;
-        public static int CountPage=0;
+        public static List<object> History = new List<object>();
+        public static int NumThis = 0;
+        public static int CountPage = 0;
         public string thisPage { get; set; }
 
         public string ThisPage
@@ -26,9 +26,9 @@ namespace NBAManagmentSystem
 
         public static void AddPage(int ind, object page) //добавление страницы в историю
         {
-            if(ind<CountPage) //удаляем страницы, если они идут после индекса вставки
+            if (ind < CountPage) //удаляем страницы, если они идут после индекса вставки
             {
-                for(int i=ind;i<CountPage;CountPage--)
+                for (int i = ind; i < CountPage; CountPage--)
                 {
                     History.RemoveAt(i);
                 }
@@ -42,7 +42,7 @@ namespace NBAManagmentSystem
 
         public static void BackPage()
         {
-            if(NumThis-1>=0)
+            if (NumThis - 1 >= 0)
             {
                 NumThis--;
                 Fr.Navigate(History[NumThis]);
@@ -72,7 +72,7 @@ namespace NBAManagmentSystem
                 m.StackCap.Visibility = Visibility.Visible;
             }
 
-            switch(o.GetType().Name)
+            switch (o.GetType().Name)
             {
                 case nameof(VisitorMenu):
                     m.TBNamePage.Text = "Visitor Menu";

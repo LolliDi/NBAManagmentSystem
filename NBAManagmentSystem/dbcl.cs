@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NBAManagmentSystem
+﻿namespace NBAManagmentSystem
 {
     class dbcl
     {
-        public static BasketballEntities dbP=new BasketballEntities();
+        public static BasketballEntities dbP = new BasketballEntities();
     }
 }

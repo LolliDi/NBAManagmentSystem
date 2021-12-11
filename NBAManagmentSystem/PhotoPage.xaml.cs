@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -63,11 +62,11 @@ namespace NBAManagmentSystem
                 {
                     encoder.Save(fileStream);
                 }
-                MessageBox.Show("Файл сохранен!\nПуть к файлу: " + filePath, "Успех!");            
+                MessageBox.Show("Файл сохранен!\nПуть к файлу: " + filePath, "Успех!");
             }
             catch (Exception ee)
             {
-                MessageBox.Show(""+ee, "Ошибка");
+                MessageBox.Show("" + ee, "Ошибка");
             }
         }
 

@@ -9,6 +9,65 @@
       Title="TeamsPage">
 
     <Grid>
-        
+        <StackPanel>
+            <ListView Name="LVConference" Background="#DCDCDC" Margin="-570,30,0,-10" ScrollViewer.HorizontalScrollBarVisibility="Disabled" BorderThickness="0" Width="202">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Left"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Border BorderThickness="1" BorderBrush="Gray" Margin="-5,-2,-5,-2" Width="100" Height="25">
+                                <TextBlock Foreground="Black" Background="#DCDCDC" Text="{Binding Name}" Width="100" Margin="0" Uid="{Binding ConferenceId}" MouseDown="TBConfereceMouseDown" Loaded="TBConferenceLoaded"/>
+                            </Border>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView Name="LVDivision" Background="Transparent" Margin="5,10" Loaded="DivisionNameLoaded" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="770" Height="390">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Border BorderThickness="1" BorderBrush="Gray" Margin="-4,15,-4,-1" Width="249" Height="30" Background="#DCDCDC">
+                            <TextBlock Text="{Binding Name}"  VerticalAlignment="Center" />
+                            </Border>
+                            <ListView Background="Transparent" Margin="-20,0,-20,-20" Uid="{Binding DivisionId}" BorderThickness="0" Loaded="LVTeamLoaded" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Width="280" Height="279">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel HorizontalAlignment="Center"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border BorderThickness="1,0,1,1" BorderBrush="Gray" Width="249" Margin="0,-4,0,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,-10,0">
+                                            <Image Source="{Binding GetLogo}" Stretch="Fill" Margin="0,0,2,0" Height="50" Width="60"/>
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding TeamName}" HorizontalAlignment="Left"/>
+                                                    <StackPanel Orientation="Horizontal" Margin="0,3">
+                                                        <TextBlock Text="Roster" FontSize="12" Uid="{Binding TeamId}" Foreground="#1974D2" MouseDown="RosterMouseDown"/>
+                                                        <TextBlock Text="Matchup" Margin="12,0" FontSize="12" Uid="{Binding TeamId}" Foreground="#1974D2" MouseDown="MatchupMouseDown"/>
+                                                        <TextBlock Text="First Lineup" FontSize="12" Uid="{Binding TeamId}" Foreground="#1974D2" MouseDown="FirstLineupMouseDown"/>
+                                                    </StackPanel>
+
+                                                </StackPanel>
+                                        </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+
     </Grid>
 </Page>
